@@ -23,12 +23,14 @@
             <tr>
                 <th>Province/State</th>
                 <th>Country/Region</th>
-                <th>Number Of Cases</th>
+                <th>All Cases</th>
+                <th>New Cases</th>
             </tr>
             <tr th:each="singleRecord : ${coronavirusData}">
                 <td th:text="${singleRecord.state}"></td>
                 <td th:text="${singleRecord.country}"></td>
                 <td th:text="${singleRecord.numberOfCases}">0</td>
+                <td th:text="${singleRecord.newCases}">0</td>
             </tr>
         </table>
 

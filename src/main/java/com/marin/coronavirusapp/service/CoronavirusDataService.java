@@ -61,7 +61,7 @@ public class CoronavirusDataService {
         int previousDayCases = Integer.parseInt(record.get(record.size() - 2));
         int currentDayCases = Integer.parseInt(record.get(record.size() - 1));
 
-        return currentDayCases - currentDayCases;
+        return currentDayCases - previousDayCases;
     }
 
 }

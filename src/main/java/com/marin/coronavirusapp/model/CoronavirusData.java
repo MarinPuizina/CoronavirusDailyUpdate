@@ -14,9 +14,9 @@ public class CoronavirusData {
 
     public static List<CoronavirusData> virusData = new ArrayList<>();
 
-    private String State;
-    private String Country;
-    private int NumberOfCases;
+    private String state;
+    private String country;
+    private int numberOfCases;
     private int newCases;
 
 }
