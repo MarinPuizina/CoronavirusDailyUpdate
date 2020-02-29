@@ -8,4 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CoronavirusData {
+
+    private String State;
+    private String Country;
+    private int newCases;
+
 }
