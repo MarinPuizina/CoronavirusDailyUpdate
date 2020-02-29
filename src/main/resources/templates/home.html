@@ -11,6 +11,21 @@
 
 <p th:text="${test}"></p>
 
+<h1>Product list</h1>
+
+<table>
+    <tr>
+        <th>Province/State</th>
+        <th>Country/Region</th>
+        <th>Number Of Cases</th>
+    </tr>
+    <tr th:each="singleRecord : ${coronavirusData}">
+        <td th:text="${singleRecord.state}"></td>
+        <td th:text="${singleRecord.country}"></td>
+        <td th:text="${singleRecord.numberOfCases}">0</td>
+    </tr>
+</table>
+
 </body>
 
 </html>
