@@ -24,8 +24,6 @@ public class CoronavirusDataService {
     @Autowired
     Environment environment;
 
-    private List<CoronavirusData> virusData = new ArrayList<>();
-
     @PostConstruct
     @Scheduled(cron = "* * 12 * * *") // Execute every 12 hours
     public void getCoronavirusData() throws IOException, InterruptedException {
@@ -48,7 +46,7 @@ public class CoronavirusDataService {
             CoronavirusData coronavirusData = new CoronavirusData();
             coronavirusData.setState(record.get(environment.getProperty("coronavirus.data.state")));
             coronavirusData.setCountry(record.get(environment.getProperty("coronavirus.data.country")));
-            coronavirusData.setNewCases( Integer.parseInt( record.get( record.size() - 1 ) ) );
+            coronavirusData.setNumberOfCases( Integer.parseInt( record.get( record.size() - 1 ) ) );
 
             System.out.println(coronavirusData);
 
@@ -56,7 +54,7 @@ public class CoronavirusDataService {
 
         }
 
-        this.virusData = newData;
+        CoronavirusData.virusData = newData;
 
     }
 
