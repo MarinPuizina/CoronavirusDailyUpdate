@@ -46,8 +46,8 @@ public class CoronavirusDataService {
         for (CSVRecord record : records) {
 
             CoronavirusData coronavirusData = new CoronavirusData();
-            coronavirusData.setState(record.get("Province/State"));
-            coronavirusData.setCountry(record.get("Country/Region"));
+            coronavirusData.setState(record.get(environment.getProperty("coronavirus.data.state")));
+            coronavirusData.setCountry(record.get(environment.getProperty("coronavirus.data.country")));
             coronavirusData.setNewCases( Integer.parseInt( record.get( record.size() - 1 ) ) );
 
             System.out.println(coronavirusData);
