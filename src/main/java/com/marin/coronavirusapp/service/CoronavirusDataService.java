@@ -1,5 +1,6 @@
 package com.marin.coronavirusapp.service;
 
+import com.marin.coronavirusapp.model.CoronavirusData;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CoronavirusDataService {
@@ -21,9 +24,13 @@ public class CoronavirusDataService {
     @Autowired
     Environment environment;
 
+    private List<CoronavirusData> virusData = new ArrayList<>();
+
     @PostConstruct
     @Scheduled(cron = "* * 12 * * *") // Execute every 12 hours
     public void getCoronavirusData() throws IOException, InterruptedException {
+
+        List<CoronavirusData> newData = new ArrayList<>();
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(environment.getProperty("coronavirus.data.csv")))
@@ -38,10 +45,18 @@ public class CoronavirusDataService {
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(stringReader);
         for (CSVRecord record : records) {
 
-            String state = record.get("Province/State");
-            System.out.println(state);
+            CoronavirusData coronavirusData = new CoronavirusData();
+            coronavirusData.setState(record.get("Province/State"));
+            coronavirusData.setCountry(record.get("Country/Region"));
+            coronavirusData.setNewCases( Integer.parseInt( record.get( record.size() - 1 ) ) );
+
+            System.out.println(coronavirusData);
+
+            newData.add(coronavirusData);
 
         }
+
+        this.virusData = newData;
 
     }
 
