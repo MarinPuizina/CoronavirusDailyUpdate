@@ -48,8 +48,6 @@ public class CoronavirusDataService {
             coronavirusData.setCountry(record.get(environment.getProperty("coronavirus.data.country")));
             coronavirusData.setNumberOfCases( Integer.parseInt( record.get( record.size() - 1 ) ) );
 
-            System.out.println(coronavirusData);
-
             newData.add(coronavirusData);
 
         }
