@@ -46,6 +46,7 @@ public class CoronavirusDataService {
             coronavirusData.setState(record.get(environment.getProperty("coronavirus.data.state")));
             coronavirusData.setCountry(record.get(environment.getProperty("coronavirus.data.country")));
             coronavirusData.setNumberOfCases( Integer.parseInt( record.get( record.size() - 1 ) ) );
+            coronavirusData.setNewCases(getNumberOfNewCases(record));
 
             newData.add(coronavirusData);
 
@@ -53,6 +54,14 @@ public class CoronavirusDataService {
 
         CoronavirusData.virusData = newData;
 
+    }
+
+    private int getNumberOfNewCases(CSVRecord record) {
+
+        int previousDayCases = Integer.parseInt(record.get(record.size() - 2));
+        int currentDayCases = Integer.parseInt(record.get(record.size() - 1));
+
+        return currentDayCases - currentDayCases;
     }
 
 }

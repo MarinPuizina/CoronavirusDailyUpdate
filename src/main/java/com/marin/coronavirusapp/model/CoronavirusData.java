@@ -17,5 +17,6 @@ public class CoronavirusData {
     private String State;
     private String Country;
     private int NumberOfCases;
+    private int newCases;
 
 }

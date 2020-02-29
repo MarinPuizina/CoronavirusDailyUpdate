@@ -10,26 +10,29 @@
 
 <body>
 
-    <div class="jumbotron">
-        <h1 class="display-4">Coronavirus - Daily Update</h1>
-        <p class="lead">Information regarding the Coronavirus</p>
-        <hr class="my-4">
-        <h1 class="display-4" th:text="${totalNumberOfCases}"></h1>
+    <div class="container">
+
+        <div class="jumbotron">
+            <h1 class="display-4">Coronavirus - Daily Update</h1>
+            <p class="lead">Information regarding the Coronavirus</p>
+            <hr class="my-4">
+            <h1 class="display-4" th:text="${totalNumberOfCases}"></h1>
+        </div>
+
+        <table>
+            <tr>
+                <th>Province/State</th>
+                <th>Country/Region</th>
+                <th>Number Of Cases</th>
+            </tr>
+            <tr th:each="singleRecord : ${coronavirusData}">
+                <td th:text="${singleRecord.state}"></td>
+                <td th:text="${singleRecord.country}"></td>
+                <td th:text="${singleRecord.numberOfCases}">0</td>
+            </tr>
+        </table>
+
     </div>
-
-    <table>
-        <tr>
-            <th>Province/State</th>
-            <th>Country/Region</th>
-            <th>Number Of Cases</th>
-        </tr>
-        <tr th:each="singleRecord : ${coronavirusData}">
-            <td th:text="${singleRecord.state}"></td>
-            <td th:text="${singleRecord.country}"></td>
-            <td th:text="${singleRecord.numberOfCases}">0</td>
-        </tr>
-    </table>
-
 
 </body>
 
