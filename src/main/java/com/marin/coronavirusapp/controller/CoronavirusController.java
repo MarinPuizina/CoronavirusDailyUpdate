@@ -16,8 +16,14 @@ public class CoronavirusController {
                 .mapToInt(data -> data.getNumberOfCases())
                 .sum();
 
+        int totalNumberOfNewCases = CoronavirusData.virusData
+                .stream()
+                .mapToInt(data -> data.getNewCases())
+                .sum();
+
         model.addAttribute("coronavirusData", CoronavirusData.virusData);
         model.addAttribute("totalNumberOfCases", "INFECTED: " + totalNumberOfCases);
+        model.addAttribute("totalNumberOfNewCases", "NEW CASES: " + totalNumberOfNewCases);
 
         return "home";
     }
